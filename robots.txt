@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://monica984.github.io/ChordArc/sitemap.xml
