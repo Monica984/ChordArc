@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create — ChordArc</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="pages.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">⌁</span><span>ChordArc</span></a><nav class="main-nav"><a href="index.html">Songs</a><a href="learn.html">Learn</a><a class="active" href="create.html">Create</a></nav><a class="nav-button" href="index.html">Home</a></header>
+  <main class="page-main shell">
+    <section class="page-hero create-hero"><p class="eyebrow">CREATE • YOUR MUSIC</p><h1>Play something.<br /><em>Make it yours.</em></h1><p class="page-intro">Record your ideas, arrange them into a song and use ChordArc AI as a creative sounding board — not a songwriter.</p></section>
+    <section class="create-workspace">
+      <div class="record-panel">
+        <div class="workspace-top"><div><p class="eyebrow">NEW RECORDING</p><h2>Capture an idea</h2></div><span class="record-status" id="recordStatus">READY</span></div>
+        <div class="record-visual"><div class="record-circle"><span id="recordIcon">●</span></div><div class="wave-lines"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="record-controls"><button class="record-button" id="recordButton" onclick="toggleRecording()"><span>●</span> Record</button><button class="quiet-button" onclick="showCreateToast('Playback will be available once you record a take.')">▶ Play</button><button class="quiet-button" onclick="showCreateToast('Save your take after recording.')">Save</button></div>
+        <p class="record-note">Your browser will ask for microphone permission when recording starts.</p>
+      </div>
+      <aside class="ai-panel">
+        <div class="ai-heading"><div class="ai-avatar">✦</div><div><p class="eyebrow">CHORDARC AI</p><h2>Your creative sounding board</h2></div></div>
+        <div class="chat-messages" id="chatMessages"><div class="chat ai">Hey! Tell me what you're working on. I can suggest chord changes, rhythm ideas or ways to make a section feel different — <strong>but you stay the songwriter.</strong></div></div>
+        <div class="suggestions"><button onclick="askAI('My chorus feels boring.')">My chorus feels boring.</button><button onclick="askAI('I want more tension.')">I want more tension.</button><button onclick="askAI('Help me connect these chords.')">Help me connect these chords.</button></div>
+        <form class="chat-input" onsubmit="sendAI(event)"><input id="aiInput" placeholder="Tell ChordArc what you're hearing..." autocomplete="off" /><button>Send</button></form>
+      </aside>
+    </section>
+    <section class="learning-section"><div class="section-heading"><div><p class="eyebrow">SONG BUILDER</p><h2>Shape your idea</h2></div></div><div class="song-builder"><div class="builder-section"><span>01</span><div><h3>Intro</h3><p>No take yet</p></div><button onclick="showCreateToast('Add a recording to this section.')">+ Add</button></div><div class="builder-section"><span>02</span><div><h3>Verse</h3><p>No take yet</p></div><button onclick="showCreateToast('Add a recording to this section.')">+ Add</button></div><div class="builder-section"><span>03</span><div><h3>Chorus</h3><p>No take yet</p></div><button onclick="showCreateToast('Add a recording to this section.')">+ Add</button></div><div class="builder-section"><span>04</span><div><h3>Bridge</h3><p>No take yet</p></div><button onclick="showCreateToast('Add a recording to this section.')">+ Add</button></div></div></section>
+  </main>
+  <div class="toast" id="createToast"></div>
+  <script>
+    let recording=false;
+    function toggleRecording(){recording=!recording;document.getElementById('recordButton').innerHTML=recording?'<span>■</span> Stop recording':'<span>●</span> Record';document.getElementById('recordStatus').textContent=recording?'RECORDING':'READY';document.getElementById('recordIcon').textContent=recording?'■':'●';}
+    function showCreateToast(m){const t=document.getElementById('createToast');t.textContent=m;t.classList.add('show');clearTimeout(window.ct);window.ct=setTimeout(()=>t.classList.remove('show'),2600);}
+    function addMessage(text, cls){const d=document.createElement('div');d.className='chat '+cls;d.textContent=text;document.getElementById('chatMessages').appendChild(d);d.scrollIntoView({behavior:'smooth'});}
+    function askAI(text){document.getElementById('aiInput').value=text;sendAI(new Event('submit'));}
+    function sendAI(e){e.preventDefault();const input=document.getElementById('aiInput');const text=input.value.trim();if(!text)return;addMessage(text,'user');input.value='';setTimeout(()=>{let reply='Try changing one thing at a time. Keep your original idea, then experiment with the last chord, rhythm, or voicing and compare the feel.';if(text.toLowerCase().includes('boring'))reply='Try changing the rhythm before changing the chords. You could also hold the final chord longer or use a different voicing in the chorus to make it feel larger.';if(text.toLowerCase().includes('tension'))reply='For more tension, try a chord that wants to resolve. A dominant 7th or a borrowed chord can create movement without rewriting your whole progression.';if(text.toLowerCase().includes('connect'))reply='Keep the common tones between the two chords ringing, and look for the smallest possible finger movement. That usually makes a transition feel smoother.';addMessage(reply,'ai');},450);}
+  </script>
+</body>
+</html>
