@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ChordArc — a free community space to learn chords, progressions and strumming patterns." />
+  <title>ChordArc — Learn music, your way.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-vibe="home">
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="ChordArc home">
+      <span class="brand-mark">⌁</span>
+      <span>ChordArc</span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="active" href="#songs">Songs</a>
+      <a href="#learn">Learn</a>
+      <a href="#practice">Practice</a>
+    </nav>
+    <button class="nav-button" type="button" onclick="scrollToSection('learn')">Start learning</button>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">FREE • COMMUNITY • MUSIC</p>
+        <h1>Find the song.<br /><em>Learn how to play it.</em></h1>
+        <p class="hero-text">Chords, progressions, strumming patterns and clear explanations — all in one calm little corner of the internet.</p>
+
+        <form class="search-box" id="searchForm">
+          <span class="search-icon">⌕</span>
+          <input id="songSearch" type="search" autocomplete="off" placeholder="Search a song or artist..." aria-label="Search a song or artist" />
+          <button type="submit">Search</button>
+        </form>
+        <div id="searchResults" class="search-results" aria-live="polite"></div>
+      </div>
+
+      <div class="hero-card">
+        <div class="mini-card-top"><span>NOW LEARNING</span><span>🎸</span></div>
+        <div class="record-orb"><span>♪</span></div>
+        <h2>Perfect</h2>
+        <p>Ed Sheeran</p>
+        <div class="mini-progression"><span>G</span><span>Em</span><span>C</span><span>D</span></div>
+        <div class="mini-strum"><span>↓</span><span>↓↑</span><span>↑↓↑</span></div>
+        <button class="text-link" onclick="showSong('perfect')">Open song →</button>
+      </div>
+    </section>
+
+    <section class="section shell" id="songs">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">DISCOVER</p>
+          <h2>Something to play tonight</h2>
+        </div>
+        <button class="quiet-button" onclick="showToast('More song collections are coming soon.')">View all</button>
+      </div>
+
+      <div class="song-grid">
+        <article class="song-card vibe-sad" onclick="showSong('perfect')">
+          <div class="song-art"><span>✦</span></div>
+          <div class="song-info"><h3>Perfect</h3><p>Ed Sheeran</p></div>
+          <span class="difficulty">Easy</span>
+        </article>
+        <article class="song-card vibe-warm" onclick="showToast('This song page is coming next!')">
+          <div class="song-art"><span>☼</span></div>
+          <div class="song-info"><h3>Community Pick</h3><p>Upbeat & warm</p></div>
+          <span class="difficulty">Easy</span>
+        </article>
+        <article class="song-card vibe-calm" onclick="showToast('This song page is coming next!')">
+          <div class="song-art"><span>☾</span></div>
+          <div class="song-info"><h3>Late Night</h3><p>Soft & dreamy</p></div>
+          <span class="difficulty">Medium</span>
+        </article>
+        <article class="song-card vibe-romantic" onclick="showToast('This song page is coming next!')">
+          <div class="song-art"><span>♡</span></div>
+          <div class="song-info"><h3>Slow Dance</h3><p>Romantic mood</p></div>
+          <span class="difficulty">Medium</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section learn-section shell" id="learn">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LEARN THE BASICS</p>
+          <h2>Build your chord vocabulary</h2>
+        </div>
+      </div>
+      <div class="learn-grid">
+        <article class="learn-card featured" onclick="openChord('C')">
+          <span class="card-number">01</span>
+          <div class="fake-chord large"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <h3>C Major</h3>
+          <p>One of the first chords every guitarist meets.</p>
+          <span class="card-link">Learn C major →</span>
+        </article>
+        <article class="learn-card" onclick="openChord('G')">
+          <span class="card-number">02</span>
+          <div class="fake-chord"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <h3>G Major</h3>
+          <p>A bright, useful open chord.</p>
+          <span class="card-link">Learn G major →</span>
+        </article>
+        <article class="learn-card" onclick="openChord('Am')">
+          <span class="card-number">03</span>
+          <div class="fake-chord"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <h3>A Minor</h3>
+          <p>Perfect for softer and emotional progressions.</p>
+          <span class="card-link">Learn A minor →</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="practice-banner shell" id="practice">
+      <div>
+        <p class="eyebrow">COMING SOON</p>
+        <h2>Practice without the pressure.</h2>
+        <p>Metronome, chord-change drills and guided strumming are on the roadmap.</p>
+      </div>
+      <div class="practice-beat" aria-hidden="true"><span>↓</span><span>↓</span><span>↑</span><span>↑</span><span>↓</span><span>↑</span></div>
+    </section>
+  </main>
+
+  <footer class="site-footer shell">
+    <div><span class="brand-mark">⌁</span> ChordArc</div>
+    <p>Made for people who want to play music. Free, always.</p>
+  </footer>
+
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
+      <p class="eyebrow" id="modalEyebrow">SONG</p>
+      <h2 id="modalTitle">Perfect</h2>
+      <p id="modalArtist">Ed Sheeran</p>
+      <div class="modal-meta"><span>🎸 Guitar</span><span>Easy</span><span>Standard tuning</span></div>
+      <div class="modal-block"><h3>Chord progression</h3><div class="progression" id="modalProgression"><b>G</b><b>Em</b><b>C</b><b>D</b></div></div>
+      <div class="modal-block"><h3>Strumming pattern</h3><div class="strumming"><span>↓</span><span>↓↑</span><span>↑↓↑</span></div><p>Try it slowly at first, then bring the tempo up.</p></div>
+      <button class="primary-button" onclick="showToast('Practice mode is coming next!'); closeModal()">Practice this progression</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
